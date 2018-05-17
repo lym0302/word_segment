@@ -17,9 +17,9 @@ state_list = ['B','M','E','S']
 line_num = -1
 
 INPUT_DATA = "CTBtrainingset.txt"
-PROB_START = "trainHMM\prob_start.py"   #初始状态概率
-PROB_EMIT = "trainHMM\prob_emit.py"     #发射概率
-PROB_TRANS = "trainHMM\prob_trans.py"   #转移概率
+PROB_START = "trainHMM_prob_start.py"   #初始状态概率
+PROB_EMIT = "trainHMM_prob_emit.py"     #发射概率
+PROB_TRANS = "trainHMM_prob_trans.py"   #转移概率
 
 
 ### train 的函数
@@ -161,9 +161,9 @@ if __name__ == "__main__":
     if para == "train":
         train()
     elif para == "test":
-        prob_start = load_model("trainHMM\prob_start.py")
-        prob_trans = load_model("trainHMM\prob_trans.py")
-        prob_emit = load_model("trainHMM\prob_emit.py")
+        prob_start = load_model("trainHMM_prob_start.py")
+        prob_trans = load_model("trainHMM_prob_trans.py")
+        prob_emit = load_model("trainHMM_prob_emit.py")
         out_str = ''
         
         
