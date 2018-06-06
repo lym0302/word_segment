@@ -14,7 +14,7 @@ Count_dic = {}
 Pi_dic = {}
 word_set = set()
 state_list = ['B','M','E','S']
-line_num = -1
+line_num = 0
 
 INPUT_DATA = "CTBtrainingset.txt"
 PROB_START = "trainHMM_prob_start.py"   #初始状态概率
@@ -124,14 +124,14 @@ def viterbi(obs, states, start_p, trans_p, emit_p):  #维特比算法（一种�
     V = [{}]
     path = {}
     for y in states:   #初始值
-        V[0][y] = start_p[y] * emit_p[y].get(obs[0],0)   #在位置0，以y状态为末尾的状态序列的最大概率
+        V[0][y] = start_p[y] * emit_p[y].get(obs[0],0.00000000001)   #在位置0，以y状态为末尾的状态序列的最大概率
         path[y] = [y]
     for t in range(1,len(obs)):
         V.append({})
         newpath = {}
         for y in states:      #从y0 -> y状态的递归
-            #(prob, state) = max(([(V[t-1][y0] * trans_p[y0].get(y,0) * emit_p[y].get(obs[t],0) ,y0) for y0 in states if V[t-1][y0]>0])) 
-            (prob, state) = max([(V[t-1][y0] * trans_p[y0].get(y,0) * emit_p[y].get(obs[t],0) ,y0) for y0 in states])
+            #(prob, state) = max(([(V[t-1][y0] * trans_p[y0].get(y,0.00000000001) * emit_p[y].get(obs[t],0) ,y0) for y0 in states if V[t-1][y0]>0])) 
+            (prob, state) = max([(V[t-1][y0] * trans_p[y0].get(y,0.00000000001) * emit_p[y].get(obs[t],0.00000000001) ,y0) for y0 in states])
 
             V[t][y] =prob
             newpath[y] = path[state] + [y]
